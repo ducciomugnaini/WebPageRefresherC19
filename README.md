@@ -1,6 +1,6 @@
 # WebPageRefresherC19
 
-Tailored to check if new covid vacines are available on [Covid Site](https://prenotavaccino.sanita.toscana.it/#/home).
+Tailored to check if the reservation is active on [Covid Site](https://prenotavaccino.sanita.toscana.it/#/home).
 
 Selenium has been used to avoid the message _enable JavaScript to view the page content_.
 
