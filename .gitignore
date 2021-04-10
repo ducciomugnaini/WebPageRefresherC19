@@ -1,0 +1,34 @@
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# C# Generic Web Project #
+##########################
+Output-Build.txt
+obj/
+bin/
+App_Data/
+*.v11.suo
+.vs/
+*.pubxml.user
+Backup/
+packages/
+*.csproj.user
+*.psess
+*.vsp
+*.backup
+*.rdlc
+*.rdl
+.idea/
+.vscode/
+node_modules
+
+# ReSharper #
+#############
+*.DotSettings.user
