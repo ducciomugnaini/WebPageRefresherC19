@@ -2,6 +2,8 @@
 
 Tailored to check if the reservation is active on [Covid Site](https://prenotavaccino.sanita.toscana.it/#/home).
 
+Check is performed every ten minutes. As soon as reservation switch to active an email is sent to several recipients.
+
 Selenium has been used to avoid the message _enable JavaScript to view the page content_.
 
 
