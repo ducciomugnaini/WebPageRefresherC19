@@ -17,18 +17,6 @@ namespace WebPageRefresherC19
         static int refreshIntervalMinutes = 10;
         static string logHistory = "";
 
-        private static void Log(string log)
-        {
-
-            Directory.CreateDirectory(covidLogDir);
-            using (StreamWriter sw = File.AppendText(covidLogPath))
-            {
-                var logPhrase = $"{DateTime.Now} - {log}";
-                sw.WriteLine(logPhrase);
-                logHistory = logHistory + logPhrase + "\n";
-            }
-        }
-
         static void Main(string[] args)
         {
             RefreshPage();
@@ -88,6 +76,18 @@ namespace WebPageRefresherC19
                     smtp.EnableSsl = true;
                     smtp.Send(mail);
                 }
+            }
+        }
+        
+        private static void Log(string log)
+        {
+
+            Directory.CreateDirectory(covidLogDir);
+            using (StreamWriter sw = File.AppendText(covidLogPath))
+            {
+                var logPhrase = $"{DateTime.Now} - {log}";
+                sw.WriteLine(logPhrase);
+                logHistory = logHistory + logPhrase + "\n";
             }
         }
 
