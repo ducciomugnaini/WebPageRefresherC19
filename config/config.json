@@ -1,0 +1,17 @@
+{
+  "RefreshIntervalMinutes": 0,
+  "NotificationToAdminFrequency": 3,
+  "AdminEmail": "duccio.mugnaini@gmail.com",
+
+  "ChromeDriverPath": "C:\\ChromeDriver",
+
+  "MailCredential": {
+    "Username": "email@gmail.com",
+    "Password": "password"
+  },
+
+  "Recipients": [
+    "duccio.mugnaini@gmail.com",
+    "gina.montero.rojas@gmail.com"
+  ]
+}

@@ -18,7 +18,11 @@ Selenium has been used to avoid the message _enable JavaScript to view the page 
 [HtmlAgilityPack](https://dotnetfiddle.net/51mdl7)  
 [WebCrawler](https://github.com/abdulateef/webcrawling/blob/master/CrawlerDemo/Program.cs)  
 
-
+[FileSystemWatcher](https://docs.microsoft.com/en-us/dotnet/api/system.io.filesystemwatcher?view=net-5.0)  
+[OnChange bug](https://stackoverflow.com/questions/449993/vb-net-filesystemwatcher-multiple-change-events/450046#450046)  
+There is a nasty bug in the FileSystemWatch which causes the  events of the FileSystemWatcher to be called twice. 
+There are a lot of resources about this to be found on the Internet, but there are no real solutions.
+Therefore, this workaround is necessary: if the last time that the event has been raised is only a few msec away, we ignore it.
 
 ## Workaround Hints
 
