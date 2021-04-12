@@ -12,7 +12,7 @@ namespace WebPageRefresherC19
             ConfigManager.InitConfigWatcher();
         }
 
-        static void Main(string[] args)
+        static void Main()
         {
             Logger.OpenLog();
             var reasonPhrase = SeleniumRefresher.RefreshPageLoop();
