@@ -1,17 +1,20 @@
 {
-  "RefreshIntervalMinutes": 0,
-  "NotificationToAdminFrequency": 3,
+  "RefreshIntervalMinutes": 10,
+  "NotificationToAdminFrequency": 10,
   "AdminEmail": "duccio.mugnaini@gmail.com",
 
   "ChromeDriverPath": "C:\\ChromeDriver",
 
+  "VaccineUrl": "https://prenotavaccino.sanita.toscana.it/#/home",
+  "ElementClassToFind": "//button[@class='bg-transparent border-0 col-md-4 col-sm-12']",
+  "TextToFind": "CHIUSO",
+
   "MailCredential": {
-    "Username": "email@gmail.com",
-    "Password": "password"
+    "SenderUsername": "email@gmail.com",
+    "SenderPassword": "emailPassword"
   },
 
   "Recipients": [
-    "duccio.mugnaini@gmail.com",
-    "gina.montero.rojas@gmail.com"
+    "duccio.mugnaini@gmail.com"
   ]
 }
