@@ -27,21 +27,21 @@ namespace WebPageRefresherC19.Facilities
             }
         }
 
-        public static void SendSuccessMail(Config config)
+        public static void SendBroadcastMail(Config config, string broadcastMessage)
         {
             foreach (var recipients in config.Recipients)
             {
-                SendSuccessMail(config, recipients);
+                SendBroadcastMail(config, recipients, broadcastMessage);
             }
         }
 
-        public static void SendSuccessMail(Config config, string recipient)
+        private static void SendBroadcastMail(Config config, string recipient, string broadcastMessage)
         {
-            Logger.Log($"Vaccino disponibile => invio mail to {recipient}");
+            Logger.Log($"{broadcastMessage} => invio mail a {recipient}");
 
             SendMail(config, recipient,
-                "Vaccino disponibile",
-                $"Il vaccino è disponibile per la prenotazione dalle {DateTime.Now}\n\n{Logger.logHistory}");
+                "News Vaccino Regione Toascana",
+                $"{broadcastMessage} - {DateTime.Now}\n\n{Logger.logHistory}");
         }
 
         public static void SendLogMail(Config config)

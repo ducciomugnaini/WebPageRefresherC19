@@ -8,7 +8,7 @@ namespace WebPageRefresherC19.Facilities
 {
     class SeleniumRefresher
     {
-        public static void RefreshPageLoop()
+        public static string RefreshPageLoop()
         {
             IWebDriver driver = new ChromeDriver(ConfigManager.Config.ChromeDriverPath);
 
@@ -16,6 +16,7 @@ namespace WebPageRefresherC19.Facilities
 
             var retry = true;
             var retryNum = 0;
+            string stopTryReasonPhrase = "";
             while (retry)
             {
                 retryNum = retryNum + 1;
@@ -25,15 +26,27 @@ namespace WebPageRefresherC19.Facilities
                 Thread.Sleep(5000);
 
                 var btns = driver.FindElements(By.XPath(ConfigManager.Config.ElementClassToFind));
-                var txt = btns[4].Text;
-                retry = txt.Contains(ConfigManager.Config.TextToFind);
+
+                if (btns.Count < 5)
+                {
+                    retry = false;
+                    stopTryReasonPhrase = "Il sito è stato aggiornato. Controllare la nuova struttura";
+                }
+                else
+                {
+                    var txt = btns[4].Text;
+                    retry = txt.Contains(ConfigManager.Config.TextToFind);
+                    stopTryReasonPhrase = retry ? 
+                        $"Vaccino non ancora disponibile" :
+                        $"Il vaccino è disponibile per la prenotazione online @{ConfigManager.Config.VaccineUrl}";
+                }
 
                 if (retry)
                 {
-                    Logger.Log("Vaccino non ancora disponibile");
+                    Logger.Log(stopTryReasonPhrase);
 
                     Thread.Sleep(1000 * 60 * (int)ConfigManager.Config.RefreshIntervalMinutes);
-                    
+
                     if (retryNum % ConfigManager.Config.NotificationToAdminFrequency == 0)
                     {
                         Mail.SendLogMail(ConfigManager.Config);
@@ -42,6 +55,7 @@ namespace WebPageRefresherC19.Facilities
             }
 
             driver.Close();
+            return stopTryReasonPhrase;
         }
     }
 }
