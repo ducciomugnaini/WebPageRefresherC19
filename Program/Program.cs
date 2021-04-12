@@ -15,8 +15,8 @@ namespace WebPageRefresherC19
         static void Main(string[] args)
         {
             Logger.OpenLog();
-            SeleniumRefresher.RefreshPageLoop();
-            Mail.SendSuccessMail(ConfigManager.Config);
+            var reasonPhrase = SeleniumRefresher.RefreshPageLoop();
+            Mail.SendBroadcastMail(ConfigManager.Config, reasonPhrase);
         }        
     }
 }
