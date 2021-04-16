@@ -13,7 +13,14 @@ namespace WebPageRefresherC19.Facilities
         static Logger()
         {
             logDir = $@"{Directory.GetCurrentDirectory()}\CovidCrawler";
-            logPath = $@"{logDir}\covidLog.txt";            
+            logPath = $@"{logDir}\covidLog.txt";
+
+            ClearLog();
+        }
+
+        public static void ClearLog()
+        {
+            File.WriteAllText(logPath, string.Empty);
         }
 
         public static void OpenLog()
