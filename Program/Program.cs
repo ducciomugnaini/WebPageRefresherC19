@@ -17,6 +17,6 @@ namespace WebPageRefresherC19
             Logger.OpenLog();
             var reasonPhrase = SeleniumRefresher.RefreshPageLoop();
             Mail.SendBroadcastMail(ConfigManager.Config, reasonPhrase);
-        }        
+        }
     }
 }

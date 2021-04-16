@@ -27,14 +27,14 @@ namespace WebPageRefresherC19.Facilities
 
                 var btns = driver.FindElements(By.XPath(ConfigManager.Config.ElementClassToFind));
 
-                if (btns.Count < 5)
+                if (btns.Count < 3)
                 {
                     retry = false;
                     stopTryReasonPhrase = "Il sito è stato aggiornato. Controllare la nuova struttura";
                 }
                 else
                 {
-                    var txt = btns[4].Text;
+                    var txt = btns[1].Text;
                     retry = txt.Contains(ConfigManager.Config.TextToFind);
                     stopTryReasonPhrase = retry ? 
                         $"Vaccino non ancora disponibile" :

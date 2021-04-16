@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using WebPageRefresherC19.config;
@@ -40,7 +41,7 @@ namespace WebPageRefresherC19.Facilities
             Logger.Log($"{broadcastMessage} => invio mail a {recipient}");
 
             SendMail(config, recipient,
-                "News Vaccino Regione Toascana",
+                "News Vaccino Regione Toscana",
                 $"{broadcastMessage} - {DateTime.Now}\n\n{Logger.logHistory}");
         }
 
@@ -51,11 +52,21 @@ namespace WebPageRefresherC19.Facilities
                 Logger.logHistory);
         }
 
-        public static void SendMailConfigIsChanged(Config config, int updateIndex)
+        public static void SendMailConfigIsChanged(Config config, Config previousConfig, int updateIndex)
         {
             SendMail(config, config.AdminEmail,
                 $"Config has been changed #{updateIndex}",
                 ConfigManager.PrettyJson(JsonConvert.SerializeObject(config)));
+
+            var prevRecipients = previousConfig.Recipients;
+            var currRecipients = config.Recipients;
+            var diffRecipients = currRecipients.Where(cr => !prevRecipients.Contains(cr)).ToList();
+            foreach (var newRecipient in diffRecipients)
+            {
+                SendMail(config, newRecipient, 
+                    $"New Vaccino Regione Toscana", 
+                    $"Sei stato aggiunto alla mailing list per ricevere notifiche relative alla prenotazione del vaccino anti covid sul portale @{config.VaccineUrl}");
+            }
         }
     }
 }

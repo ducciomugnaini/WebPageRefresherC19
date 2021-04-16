@@ -34,6 +34,7 @@ namespace WebPageRefresherC19.config
     public static class ConfigManager
     {
         public static Config Config { get; private set; }
+        public static Config PreviousConfig { get; private set; }
 
         private static string _configPath = "";
         private static string _configDir = "";
@@ -50,6 +51,7 @@ namespace WebPageRefresherC19.config
         public static void ReadConfig()
         {
             Thread.Sleep(1000);
+            PreviousConfig = Config;
             Config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(_configPath));
         }
 
@@ -92,7 +94,7 @@ namespace WebPageRefresherC19.config
 
             Logger.Log($"Configuration changed detected #{updateIndex}");
             ReadConfig();
-            Mail.SendMailConfigIsChanged(Config, updateIndex);
+            Mail.SendMailConfigIsChanged(Config, PreviousConfig, updateIndex);
             Logger.Log($"Configuration updated #{updateIndex}");
 
             updateIndex++;
